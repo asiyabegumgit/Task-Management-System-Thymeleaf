@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Create or Edit Task</title>
+    <link rel="stylesheet" th:href="@{/css/task-form.css}" />
+</head>
+<body class="dark-theme">
+<div class="container">
+    <h1 th:if="${task.id != null}">Edit Task</h1>
+    <h1 th:if="${task.id == null}">Create Task</h1>
+
+    <form th:action="@{/tasks/save}" th:object="${task}" method="post" class="task-form">
+        <input type="hidden" th:field="*{id}" />
+
+        <div class="form-group">
+            <label for="title">Title:</label>
+            <input type="text" th:field="*{title}" id="title" placeholder="Enter Task Title" />
+        </div>
+
+        <div class="form-group">
+            <label for="description">Description:</label>
+            <textarea th:field="*{description}" id="description" rows="4" placeholder="Enter Task Description"></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="status">Staus:</label>
+            <input type="text" th:field="*{status}" id="status" placeholder="Enter Task Status" />
+        </div>
+
+        <button type="submit" class="submit-button">Save</button>
+    </form>
+
+    <a href="/tasks" class="back-button">Back to Task List</a>
+</div>
+</body>
+</html>
